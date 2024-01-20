@@ -279,7 +279,7 @@
 
             {% for item in sidebar %}
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ item.url }}" {% if item.submenu %}
+                <a class="nav-link collapsed" href="{% url item.url %}" {% if item.submenu %}
                     data-bs-target="#{{ item.submenu.id }}" data-bs-toggle="collapse" {% endif %}>
                     <i class="bi {{ item.icon }}"></i>
                     <span>{{ item.menu }}</span>
@@ -308,12 +308,17 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>[Page Title]</h1>
+            {% block pagetitle%}
+                <h1>[Page Title]</h1>
+            {% endblock%}
+
             <nav>
+            {% block navigation %}
                 <ol class="breadcrumb">
-                    <!-- <li class="breadcrumb-item"><a href="index.html">Home</a></li> -->
-                    <!-- <li class="breadcrumb-item active">Dashboard</li> -->
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
+            {% endblock %}
             </nav>
         </div><!-- End Page Title -->
 
